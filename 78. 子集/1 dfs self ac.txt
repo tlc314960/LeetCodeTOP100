@@ -1,0 +1,32 @@
+dfs方法是最直观的解法
+执行结果：
+通过
+显示详情
+执行用时 :1 ms, 在所有 Java 提交中击败了99.36% 的用户
+内存消耗 :40.5 MB, 在所有 Java 提交中击败了5.45%的用户
+
+class Solution {
+    
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new LinkedList<>();
+        if(nums.length == 0)
+            return res;
+        int[] visited = new int[nums.length];
+        dfs(0, new LinkedList<>(), nums, res, visited);
+        res.add(new LinkedList<Integer>());
+        return res;
+    }
+    private void dfs(int index, LinkedList<Integer> cur, int[] nums, List<List<Integer>> res, int[] visited){
+        if(index == nums.length){
+            // res.add(new LinkedLis<Integer>(cur));
+            return;
+        }
+        
+        for(int i=index; i<nums.length; ++i){
+            cur.addLast(nums[i]);
+            res.add(new LinkedList<Integer>(cur));
+            dfs(i+1, cur, nums, res, visited);
+            cur.removeLast();
+        }
+    }
+}

@@ -1,0 +1,35 @@
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        boolean res = false;
+        int m = board.length;
+        int n = board[0].length;
+        if(m == 0)
+            return res;
+        int[][] visited = new int[m][n];
+        for(int i=0; i<m; ++i){
+            for(int j=0; j<n; ++j){
+                res = dfs(0, i, j, board, word, visited);
+                if(res)
+                    return true; 
+            }
+        }
+        return res;
+    }
+    private boolean dfs(int index, int I, int J, char[][] board, String word, int[][] visited){
+        if(index == word.length())
+            return true;
+        if(I<0 || I>=board.length || J<0 || J>=board[0].length || visited[I][J] == 1 || board[I][J] != word.charAt(index))
+            return false;
+        boolean res = false;
+        int[] diri = {-1,1,0,0};
+        int[] dirj = {0,0,-1,1};
+        for(int i=0; i<4; ++i){
+            visited[I][J] = 1;
+            res = dfs(index+1, I+diri[i], J+dirj[i], board, word, visited);
+            visited[I][J] = 0;
+            if(res)
+                return true;   
+        }                    
+        return res;
+    }
+}

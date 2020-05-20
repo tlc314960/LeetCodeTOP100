@@ -1,0 +1,56 @@
+主要思路为滑动窗口
+具体见sum
+
+
+class Solution {
+    public String minWindow(String s, String t) {
+        if(s.length() == 0 || t.length() == 0)
+            return "";
+
+        Map<Character, Integer> tDic = new HashMap<>();
+        Map<Character, Integer> sDic = new HashMap<>();
+
+        for(int i=0; i<t.length(); ++i){
+            int count = tDic.getOrDefault(t.charAt(i), 0);
+            tDic.put(t.charAt(i), count+1);
+        }
+
+        int tSize = tDic.size();
+        int sSize = 0;
+
+        int l = 0;
+        int r = 0;
+        int min = s.length()+2;
+        int minl = -1;
+        int minr = s.length();
+
+        while(r < s.length()){
+            char cur = s.charAt(r);
+
+            int count = sDic.getOrDefault(cur, 0);
+            sDic.put(cur, count+1);
+
+            if(sDic.get(cur).equals(tDic.get(cur))){
+                sSize++;
+            }
+            while(l <= r && sSize == tSize){
+                if(r-l+1 < min){
+                    min = r-l+1;
+                    minl = l;
+                    minr = r;
+                }
+                
+                char lChar = s.charAt(l);
+                sDic.put(lChar, sDic.get(lChar)-1);
+                if(tDic.containsKey(lChar) && sDic.get(lChar).intValue() < tDic.get(lChar).intValue()){
+                    sSize--;
+                }
+                l++;                
+            }
+            r++;
+            
+        }
+
+        return minr == s.length() ? "" : s.substring(minl, minr+1);
+    }
+}

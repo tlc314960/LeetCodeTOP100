@@ -1,0 +1,23 @@
+class Solution {
+    public int maxDepth(TreeNode root) {
+        int res = 0;
+        LinkedList<TreeNode> temp = new LinkedList<>();
+        if(root == null)
+            return res;
+        temp.addLast(root);
+        while(!temp.isEmpty()){
+            int size = temp.size();
+            List<Integer> level = new LinkedList<>();
+            for(int i=0; i<size; ++i){
+                TreeNode cur = temp.removeFirst();
+                level.add(cur.val);
+                if(cur.left!=null)
+                temp.addLast(cur.left);
+                if(cur.right!=null)  
+                temp.addLast(cur.right);
+            }
+            res++;
+        }
+        return res;
+    }
+}

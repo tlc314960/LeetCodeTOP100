@@ -1,0 +1,5 @@
+这是一道写过的题目，买卖股票，用了一点动态规划的思想。数组元素的意义是当前天数的最大利润，这就有状态转移的地方了。
+当前天的利润的最大值，取决于比较当前天不卖（也就是维持前一天dp i-1的利润）和当天卖的比较结果。
+还有一种运用单调栈的解法。
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/c-li-yong-shao-bing-wei-hu-yi-ge-dan-diao-zhan-tu-/
+这个解析很好的解答了单调栈，并且解释了单调栈的适用场景。

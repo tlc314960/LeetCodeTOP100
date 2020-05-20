@@ -1,0 +1,18 @@
+class Solution {
+    public int trap(int[] height) {
+        int res = 0;
+        LinkedList<Integer> temp = new LinkedList<>();
+        for(int i=0; i<height.length; ++i){
+            while(!temp.isEmpty() && height[temp.peek()]<height[i]){
+                int cur = height[temp.pop()];
+                while(!temp.isEmpty() && height[temp.peek()] == cur){
+                    temp.pop();
+                }
+                if(!temp.isEmpty())
+                    res += (Math.min(height[temp.peek()], height[i]) - cur) * (i - temp.peek() - 1);
+            }
+            temp.push(i);
+        }
+        return res;
+    }
+}

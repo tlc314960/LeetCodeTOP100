@@ -1,0 +1,38 @@
+主要思路为两次二分查找左右边界
+复杂度为logn
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int l = 0;
+        int r = nums.length - 1;
+        int[] res = new int[2];
+        int m = 0;
+        while(l <= r){ 
+            m =  (l + r) / 2;        
+            if(nums[m] <= target){
+                l = m + 1;
+            }else{
+                r = m - 1;
+            }
+        }
+        if(r == -1|| nums[r]!= target)
+            res[1] = -1;
+        else
+            res[1] = r;
+        l = 0;
+        r = nums.length - 1;
+        while(l <= r){
+            m =  (l + r) / 2;    
+            if(nums[m] >= target){
+                r = m - 1;
+            }else{
+                l = m + 1;
+            }
+        }
+        if(l == nums.length || nums[l]!= target)
+            res[0] = -1;
+        else
+            res[0] = l;
+        return res;
+    }
+}
