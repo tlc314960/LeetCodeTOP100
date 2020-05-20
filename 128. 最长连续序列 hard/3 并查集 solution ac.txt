@@ -1,0 +1,37 @@
+class Solution {
+    Map<Integer, Integer> temp;
+    Map<Integer, Integer> count;
+    public int longestConsecutive(int[] nums) {
+        if(nums.length == 0)
+            return 0;
+        int res = 1;
+        temp = new HashMap<>();
+        count = new HashMap<>();
+        for(int num:nums){
+            temp.put(num, num);
+            count.put(num, 1);
+        }
+        for(int num:nums){
+            if(temp.containsKey(num+1)){
+                res = Math.max(res, join(num, num+1));               
+            }
+        }
+        return res;
+    }
+    private int join(int pre, int lat){
+        int x = find(pre);
+        int y = find(lat);
+        if(x == y){
+            return count.get(x);
+        }
+        temp.put(y, x);
+        count.put(x, count.get(x)+count.get(y));
+        return count.get(x);
+    }
+    private int find(int num){
+        if(temp.get(num).equals(num))
+            return num;
+        temp.put(num, find(temp.get(num)));
+        return temp.get(num);
+    }
+}
