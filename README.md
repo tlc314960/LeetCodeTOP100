@@ -9,4 +9,6 @@ If you have any questions or thoughts about my solutions, you can contact me by 
 
 HAVE A NICE DAY! :)
 
+[34. 在排序数组中查找元素的第一个和最后一个位置](34.%20在排序数组中查找元素的第一个和最后一个位置/)
+
 ![wechat](imgs/wechat.jpg)
