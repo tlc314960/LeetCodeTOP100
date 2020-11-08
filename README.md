@@ -9,7 +9,7 @@ If you have any questions or thoughts about my solutions, you can contact me by 
 
 HAVE A NICE DAY! :)
 
-![wechat](imgs/wechat.jpg)
+![wechat](images/wechat.jpg)
 
 ## Catalog
 
